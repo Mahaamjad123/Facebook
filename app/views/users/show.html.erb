@@ -1,0 +1,57 @@
+<div class="topnav">
+<a class="active" href="#">  Facebook</a>
+</div>
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+ 
+<p>
+  <strong>Age:</strong>
+  <%= @user.age %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @user.gender %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<h1>Posts</h1>
+<table>
+  <tr>
+    <th>Post</th>
+    <th>Comments</th>
+    <th>Delete</th>
+  </tr>
+ 
+  <% @user.posts.each do |post| %>
+    <tr>
+      <td><%= post.post_text %></td>
+      <td><%= link_to 'Show Comments', user_post_path(post) %></td>
+      <td><%= link_to 'Destroy Post', [post.user, post],
+      method: :delete,
+      data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+
+
+<h2>Add Post:</h2>
+<%= form_with(model: [ @user, @user.posts.build ], local: true) do |form| %>
+  <p>
+    <%= form.label :Post %><br>
+    <%= form.text_area :post_text %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+ 
+<%= link_to 'Back', users_path %>

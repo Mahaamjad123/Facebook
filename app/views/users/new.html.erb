@@ -1,0 +1,35 @@
+
+<div class="topnav">
+<a class="active" href="#">  Facebook</a>
+</div>
+<%= form_with scope: :user, url: users_path, local: true do |form| %>
+    <p>
+      <%= form.label :Name %><br>
+      <%= form.text_field :name %>
+    </p>
+
+    <p>
+      <%= form.label :Age %><br>
+      <%= form.number_field :age %>
+    </p>
+
+    <p>
+      <%= form.label :Gender %><br>
+      <%= form.text_field :gender %>
+    </p>
+
+    <p>
+          <%= form.label :Email %><br>
+          <%= form.email_field :email, :size=>"40", :placeholder=>"example@gmail.com" %>
+    </p>
+
+    <p>
+        <%= form.label :I_accept_the_Terms_and_Conditions %>
+        <%= form.check_box :agreement %>
+    </p>
+
+     <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+  <%= link_to 'Back', users_path %>
